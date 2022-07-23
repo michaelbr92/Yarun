@@ -1,0 +1,17 @@
+:root {
+    --primary: #01fff4;
+    --primary: #6dd0f7;
+    --secondary: #191c24;
+    --secondary-light: #282c38;
+    --light: #6c7293;
+    --dark: #000000;
+    --bright: #ffffff;
+
+    --success: #04d361;
+    --warning: #fba94c;
+    --fail: #ff6962;
+
+    --quick-speed: 0.1s;
+    --normal-speed: 0.3s;
+    --slow-speed: 1s;
+}

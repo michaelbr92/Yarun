@@ -1,0 +1,29 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  minio:
+    env_file: .env
+    image: minio/minio
+    command: server /data --console-address ":9001"
+    ports:
+      - 9000:9000
+      - 9001:9001
+    volumes:
+      - ./data/files:/data
+
+  redis:
+    env_file: .env
+    image: redis
+    ports:
+      - 6379:6379
+    volumes:
+      - ./data/redis:/data
+
+  celery_worker:
+    env_file: .env
+    volumes:
+      - ./backend:/app
+    build:
+      context: .
+      dockerfile: dockerfiles/celery.Dockerfile
+    # command: ['ls', '-laR']
+    command: ['celery', '-A', 'connections.celery_app', 'worker', '-l', 'info'] 
